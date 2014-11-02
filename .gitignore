@@ -1,0 +1,5 @@
+# VisualStudio
+*.suo
+
+GPSTrack/bin/
+GPSTrack/obj/
