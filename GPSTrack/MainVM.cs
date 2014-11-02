@@ -103,13 +103,24 @@ namespace GPSTrack
         }
 
         private void OnGPGSV(object sender, GPGSV dataGSV)
-        {   
+        {
+            var listFound = new List<int>();
+
             foreach (var satellite in dataGSV.Satellites)
             {
                 var id = satellite.ID;
                 if (id >= 0 && id <= 32)
                 {
                     m_satellites[id-1].Update(satellite);
+                    listFound.Add(id);
+                }
+            }
+
+            // reset others
+            for (var i = 0; i < m_satellites.Length; i++) {
+                if (!listFound.Contains(i + 1)) {
+                    m_satellites[i].reset();
+                    m_satellites[i].ID = i+1;
                 }
             }
         }

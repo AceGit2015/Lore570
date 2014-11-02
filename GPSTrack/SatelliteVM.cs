@@ -10,6 +10,11 @@ namespace GPSTrack
     public class SatelliteVM:BaseVM
     {
         public SatelliteVM() {
+            reset();
+        }
+
+        public void reset()
+        {
             ID = -1;
             Pitch = -1;
             Bearing = -1;
